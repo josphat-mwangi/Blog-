@@ -1,28 +1,15 @@
 from flask import Flask
-from flask import render_template
+from flask import render_template,url_for,flash,redirect
+from . import main
 
 @main.route("/")
 
 
-posts = [
-    {
-        'author': 'jopa Mwas',
-        'title': 'Blog Post 1',
-        'content': 'First post content'
-        'date_posted': 'April 20, 2018'
-    },
-    {
-        'author': 'mwas jopa',
-        'title': 'Blog Post 2',
-        'content': 'second post content'
-        'date_posted': 'April 21, 2018'
-    }
-]
 
 @main.route("/home")
 def home():
-    return render_template('home.html', posts=posts)
+    return render_template('home.html')
 
 @main.route("/about")
 def about():
-    retuen render_template('about.html', title='About')
+    return render_template('about.html', title='About')
