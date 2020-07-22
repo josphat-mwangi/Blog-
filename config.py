@@ -12,7 +12,7 @@ class Config:
 
 
 class ProdConfig(Config):
-    DEBUG = False
+    
     '''
     Production  configuration child class
 
