@@ -6,13 +6,13 @@ from .forms import  PostForm,UpdateAccountForm
 from flask_login import login_required, current_user
 import datetime
 
+
+
+
+
 @main.route("/")
-
-
-
-@main.route("/home")
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
 
 @main.route("/about")
 def about():
