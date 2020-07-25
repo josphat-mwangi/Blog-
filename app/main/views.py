@@ -1,8 +1,8 @@
-from flask import render_template, request, redirect, url_for, abort
+from flask import render_template, request, redirect, url_for, abort,flash
 from . import main
 from ..models import User, Post
 from .. import db
-from .forms import UpdateProfile
+from .forms import UpdateProfile,PostForm
 from flask_login import login_required, current_user
 import datetime
 
@@ -15,13 +15,19 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
+    post = Post.get_posts()
+    print(post,"hy world")
 
     title = 'Home - Welcome to Perfect Blog app'
 
 
 
-    return render_template('index.html', title=title)
+    return render_template('index.html', title=title,posts=post)
 
+
+@main.route("/about")
+def about():
+    return render_template('about.html', title='About')
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -56,8 +62,8 @@ def update_profile(uname):
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(title=form.title.data,
-                    content=form.content.data, author=current_user)
+        post = Post(title=form.title.data,content=form.content.data,author=current_user)
+        
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
