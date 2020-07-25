@@ -50,26 +50,20 @@ class Post(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_posts(cls):
-        posts = Post.query.filter_by().all()
-        return posts
+    def get_blog(cls):
+        '''
+        Function that returns all the data from blog after being queried
+        '''
+        blog = Post.query.order_by(Post.id.desc()).all()
+        return blog
 
     @classmethod
-    def get_post(cls, id):
-        post = Post.query.filter_by(id=id).first()
-
-        return post
-
-    @classmethod
-    def count_posts(cls, uname):
-        user = User.query.filter_by(username=uname).first()
-        posts = Post.query.filter_by(user_id=user.id).all()
-
-        posts_count = 0
-        for post in posts:
-            posts_count += 1
-
-        return posts_count
+    def delete_blog(cls):
+        '''
+        Functions the deletes a blog post
+        '''
+        blog = Blog.query.filter_by(id=blog_id).delete()
+        comment = Comments.query.filter_by(blog_id=blog_id).delete()
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
@@ -88,7 +82,7 @@ class Comment(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_comments(cls, pitch):
+    def get_comments(cls, post):
         comments = Comment.query.filter_by(post_id=post).all()
         return comments
 
