@@ -5,6 +5,7 @@ from .. import db
 from .forms import UpdateProfile,PostForm
 from flask_login import login_required, current_user
 import datetime
+from ..requests import get_quote
 
 
 # Views
@@ -16,13 +17,13 @@ def index():
     View root page function that returns the index page and its data
     '''
     post = Post.get_posts()
-    print(post,"hy world")
+    quote = get_quote()
 
     title = 'Home - Welcome to Perfect Blog app'
 
 
 
-    return render_template('index.html', title=title,posts=post)
+    return render_template('index.html', title=title,posts=post,quote=quote)
 
 
 @main.route("/about")

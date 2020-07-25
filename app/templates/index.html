@@ -8,6 +8,18 @@
 {%endblock%}
 
 {% block content %}
+<div class="card">
+    <div class="card-header text-center">
+        Quote
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p class="text-center">{{quote.quote}}</p>
+            <footer class="blockquote-footer text-center">{{quote.author}}<cite title="Source Title"></cite></footer>
+        </blockquote>
+    </div>
+</div>
+
 {% for post in posts %}
 <article class="media content-section">
     <img class="rounded-circle article-img"
