@@ -4,6 +4,11 @@
 ## Author
 By JOSPHAT Mwangi
 
+# Description
+This is a web application that allows a blogger to create new posts, delete a post, update a post and also delete a comment that the blogger finds insulting or degrading. As for users they will be able to view posts, comment on a post and also subscribe to get updates.
+
+
+
 ## User Stories
 1. As a user I would like:
 
@@ -16,8 +21,16 @@ By JOSPHAT Mwangi
 8. to delete comments that I find insulting     or  degrading.
 9. How to use it
 
-# Description
-This is a web application that allows a blogger to create new posts, delete a post, update a post and also delete a comment that the blogger finds insulting or degrading. As for users they will be able to view posts, comment on a post and also subscribe to get updates.
+## Setup/Installation Requirements
+1. install python3 to run the app
+2.  Then:
+    git clone https://github.com/josphat-mwangi/Blog-.git
+    
+    cd Blog-
+
+    python -m venv virtual
+    
+    python3 manager.py server to run the app
 
 
 ## Known Bugs
