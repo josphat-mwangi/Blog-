@@ -12,7 +12,8 @@ class User(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    image_file = db.Column(db.String(20), nullable=False, default='default.jpeg')
+   
     posts = db.relationship('Post', backref='author', lazy=True)
     pass_secure = db.Column(db.String(255))
     bio = db.Column(db.String(255))

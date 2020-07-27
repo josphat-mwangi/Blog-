@@ -73,31 +73,11 @@ def new_post():
                            form=form, legend='New Post')
 
 
-@main.route("/post/<int:id>", methods=['GET','POST'])
-def post(id):
-    post = Post.get_post(id=id)
-
-
-    if request.args.get("like"):
-        post.likes = post.likes + 1
-
-        db.session.add(post)
-        db.session.commit()
-
-        return redirect("/post/{id}".format(id=post.id))
-
-    elif request.args.get("dislike"):
-        post.dislikes = post.dislikes + 1
-
-        db.session.add(post)
-        db.session.commit()
-
-        return redirect("/post/{id}".format(id=post.id))
+@main.route("/post/<int:post_id>", methods=['GET','POST'])
+def post(post_id):
+    post = Post.query.get_or_404(post_id)
     
-
-   
-
-    return render_template("post.html", post=post)
+    return render_template('post.html', title=post.title, post=post)
 
 
 @main.route("/post/<int:id>/update", methods=['GET', 'POST'])
@@ -112,7 +92,7 @@ def update_post(id):
         post.content = form.content.data
         db.session.commit()
         flash('Your post has been updated!', 'success')
-        return redirect(url_for('main.post', id=post.id))
+        return redirect(url_for('main.post', post_id=post.id))
     elif request.method == 'GET':
         form.title.data = post.title
         form.content.data = post.content
